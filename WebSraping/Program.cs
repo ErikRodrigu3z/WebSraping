@@ -1,6 +1,7 @@
 ﻿// PuppeteerSharp nuget //
 using HtmlAgilityPack;
 using PuppeteerSharp;
+using ScrapySharp.Extensions;
 using System.Diagnostics;
 using System.Net;
 
@@ -13,6 +14,7 @@ try
 
     await GetWebRequetsData();
 
+    GetScrapySharpData();
 }
 catch (Exception ex)
 {
@@ -104,8 +106,19 @@ async Task GetWebRequetsData()
 
 void GetScrapySharpData()
 {
+    Stopwatch stopwatch = Stopwatch.StartNew();
+    stopwatch.Start();
+
     HtmlWeb web = new HtmlWeb();
     HtmlDocument doc = web.Load(url);
-    // https://www.youtube.com/watch?v=NVio7NxaosA&ab_channel=hdeleon.net
+    List<string> list = new List<string>();
+
+    foreach (var item in doc.DocumentNode.CssSelect(".ui-search-item__title"))
+    {        
+        list.Add(item.InnerHtml);
+    }
+
+    list.ForEach(x => Console.WriteLine(x));
+    Console.WriteLine(Environment.NewLine + "Tiempo Toltal: " + stopwatch.Elapsed.ToString());
 
 }

@@ -64,7 +64,8 @@ async Task GetPuppeteerSharpData()
     {
         Console.WriteLine(item);
     }
-    
+
+    stopwatch.Stop();
     Console.WriteLine(Environment.NewLine + "Tiempo Toltal: " + stopwatch.Elapsed.ToString());
 
 };
@@ -101,6 +102,8 @@ async Task GetWebRequetsData()
     }
     // Close the response.
     response.Close();
+
+    stopwatch.Stop();
     Console.WriteLine(Environment.NewLine + "Tiempo Toltal: " + stopwatch.Elapsed.ToString());
 }
 
@@ -119,6 +122,8 @@ void GetScrapySharpData()
     }
 
     list.ForEach(x => Console.WriteLine(x));
+
+    stopwatch.Stop();
     Console.WriteLine(Environment.NewLine + "Tiempo Toltal: " + stopwatch.Elapsed.ToString());
 
 }
